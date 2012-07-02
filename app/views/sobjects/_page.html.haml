@@ -1,0 +1,17 @@
+=stylesheet_link_tag("https://na9.salesforce.com/sCSS/25.0/sprites/1339647382000/Theme3/gc/dStandard.css")
+%div{"data-role" => "page"}
+  %div{"data-role" => "header"}
+    %h1
+      Dashboard
+    %select{'data-mini' => 'true', :id => "objectSelector", :class => "ui-btn-right"}
+      -@types.each do |type|
+        %option{:value => "#{type["name"]}", "#{@object == type["name"] ? "selected" : "not_selected"}" => "selected"}
+          =type["label"]
+  %div{"data-role" => "content"}
+    %ul.pins
+
+
+=render :partial => "item"
+
+:javascript
+  jQuery(".pins").salestrest({object: "#{@object}"});
