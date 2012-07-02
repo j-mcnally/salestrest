@@ -9,13 +9,13 @@ end
 
 gem 'jquery_mobile_rails'
 
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  
-  gem 'therubyracer'
 
-  gem 'uglifier', '>= 1.0.3'
-end
+gem 'sass-rails',   '~> 3.2.3'
+
+gem 'therubyracer'
+
+gem 'uglifier', '>= 1.0.3'
+
 
 gem 'haml'
 
