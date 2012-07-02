@@ -1,0 +1,16 @@
+# SQLite version 3.x
+#   gem install sqlite3
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'sqlite3'
+development:
+  consumer_key: 3MVG9y6x0357HleefWRTFJQG9ow1XsukkdA9i1QRwbdyXhgyrIgNd5Thx0TYRC2qTbf3x3E.KpJhHVoHVBMf8
+  consumer_secret: 5991130399783861243
+  
+test:
+  consumer_key: 3MVG9y6x0357HleefWRTFJQG9ow1XsukkdA9i1QRwbdyXhgyrIgNd5Thx0TYRC2qTbf3x3E.KpJhHVoHVBMf8
+  consumer_secret: 5991130399783861243
+  
+production:
+  consumer_key: 3MVG9y6x0357HleefWRTFJQG9ow1XsukkdA9i1QRwbdyXhgyrIgNd5Thx0TYRC2qTbf3x3E.KpJhHVoHVBMf8
+  consumer_secret: 5991130399783861243

@@ -1,0 +1,1 @@
+SFDC_CONFIG = YAML.load_file("#{Rails.root}/config/salesforce.yml")[Rails.env]

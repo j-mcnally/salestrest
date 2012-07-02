@@ -1,0 +1,36 @@
+%script{:id => "pin", :type => "text/html"}
+  {{#records}}
+  %li{:id => "{{Id}}", :class => "noChatter pin"}
+    %ul
+      %li.info
+        %div.type
+          {{#attributes}}
+          {{type}}
+          {{/attributes}}
+        %div.title
+          {{Name}}
+        {{#attributes}}
+        %div{:class => "{{type.toLowerCase}}Tab image"}
+          {{/attributes}}
+          %div{ :class=> "pageTitleIcon" }
+        %ul.desc
+          {{#fields__api}}
+          %li
+            {{key}}: {{val}}
+          {{/fields__api}}
+      %li.chatter
+        %ul
+          %li.preloader
+            =image_tag "loader.gif"
+  {{/records}}
+%script{:id => "chatter", :type => "text/html"}
+  {{#chatter}}
+  %li.post
+    .author
+      %img{:src => "{{photoUrl}}?oauth_token=#{session[:access_token]}", :title => "{{#actor}}{{name}}{{/actor}}", :alt => "{{#actor}}{{name}}{{/actor}}"}
+    .body
+      %b
+        {{#actor}}{{name}}{{/actor}}
+        %br
+        {{#body}}{{text}}{{/body}}
+  {{/chatter}}
