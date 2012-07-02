@@ -6,6 +6,8 @@ group :development, :test do
   gem 'sqlite3'
 end
 
+gem 'pg'
+
 gem 'thin'
 
 gem 'jquery_mobile_rails'
