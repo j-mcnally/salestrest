@@ -1,4 +1,4 @@
-require "CGI"
+require "cgi"
 
 class AuthenticatedController < ApplicationController
   before_filter :oauth_client
