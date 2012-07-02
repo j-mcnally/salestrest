@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
       token = @client.auth_code.get_token(params[:code], :redirect_uri => redirect_uri)
       session[:access_token] = token.token
       session[:token_options] = {refresh_token: token.refresh_token}.merge(token.params).merge(token.options)
-      redirect_to dashboard_index_path
+      redirect_to root_path
       return
     else
       redirect_to @client.auth_code.authorize_url(:redirect_uri => redirect_uri)
