@@ -21,7 +21,10 @@
       %li.chatter
         %ul
           %li.preloader
-            =image_tag "loader.gif"
+            =image_tag "loader.gif", :class => "chatterLoader", :style => "display: none;"
+          %li.load
+            %a{:href => "#", :class => "loadChatter"}
+              + Load chatter feed
   {{/records}}
 %script{:id => "chatter", :type => "text/html"}
   {{#chatter}}
@@ -34,3 +37,24 @@
         %br
         {{#body}}{{text}}{{/body}}
   {{/chatter}}
+  {{^chatter}}
+  %li.post.noposts
+    .body
+      No chatter posts
+  {{/chatter}}
+  {{#me}}
+  %li.comment
+    %img{:style => "height: 30px;", :src => "{{#photo}}{{smallPhotoUrl}}{{/photo}}?oauth_token=#{session[:access_token]}", :title => "{{name}}", :alt => "{{name}}"}
+    %input{:type => "text", :class => "comment", :placeholder => "Enter a comment"}
+  {{/me}}
+%script{:id => "chatterComment", :type => "text/html"}
+  %li.post
+    .author
+      %img{:src => "{{#author}}{{#photo}}{{smallPhotoUrl}}{{/photo}}{{/author}}?oauth_token=#{session[:access_token]}", :title => "{{#author}}{{name}}{{/author}}", :alt => "{{#author}}{{name}}{{/author}}"}
+    .body
+      %b
+        {{#author}}{{name}}{{/author}}
+        %br
+        {{body}}
+
+  

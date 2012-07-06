@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .pins {
-  height: 600px;
+
 }
 .pin {
   list-style: none;
@@ -54,3 +54,41 @@
       }
     }
 }
+
+a.loadChatter {
+  color: #000;
+  text-decoration: none;
+  padding-left: 20px;
+  font-size: 10px;
+  line-height: 40px;
+  display: block;
+  
+}
+
+input[type='text'].comment {
+  
+  border-radius: 5px;
+  height: 20px;
+  width: 75%;
+  border: 1px solid #AD9C9C;
+  position: relative;
+  top: -10px;
+
+}
+
+
+// Clearfix
+// --------
+// For clearing floats like a boss h5bp.com/q
+@mixin clearfix() {
+  *zoom: 1;
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+  }
+  &:after {
+    clear: both;
+  }
+}
+.clearfix { @include clearfix(); }

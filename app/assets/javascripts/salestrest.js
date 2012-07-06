@@ -34,16 +34,43 @@
               jQuery(elem).append(ich.pin(data.data));
               $this.setupBlocks();
               jQuery(".pins li.pin").each(function() {
-                if (jQuery(this).hasClass("noChatter")) {
                   var id = jQuery(this).attr("id");
                   var context = this;
-                  /*
-                  jQuery.getJSON("/chatter/" + id + ".json", function(data) {
-                    jQuery(".chatter ul", jQuery(context)).html(ich.chatter(data));
-                    $this.setupBlocks();
+                    jQuery(".loadChatter", jQuery(context)).bind("click", function(e) {
+                      jQuery(this).hide();
+                      e.preventDefault();
+                      jQuery(".chatterLoader", jQuery(context)).show();
+                      jQuery.getJSON("/chatter/" + id + ".json", function(data) {
+                        data.me = $this.options.me;
+                        jQuery(".chatter ul", jQuery(context)).html(ich.chatter(data));
+                        jQuery(".chatterLoader", jQuery(context)).hide();
+                        
+                        jQuery("input.comment", jQuery(context)).keypress(function(e) {
+                          if (e.charCode == 13) {
+                            
+                            var newComment = jQuery(this).val();
+                            var box = this;
+                            var id = jQuery(context).attr('id');
+                            
+                            jQuery.ajax({
+                              type: 'POST',
+                              url: '/chatter',
+                              data: {id: id, text: newComment},
+                              success: function(e) {
+                                var cdata = {author: $this.options.me, body: newComment}
+                                jQuery("li.comment", jQuery(context)).before(ich.chatterComment(cdata));
+                                jQuery(".noposts", jQuery(context)).hide();
+                                jQuery(box).val("");
+                                $this.setupBlocks($this)
+                              }
+                            });
+                            
+                          }
+                        });
+                        
+                        $this.setupBlocks();
+                      });
                   });
-                  */
-                }
               });
               callback();
             });
@@ -69,6 +96,7 @@
 
       positionBlocks: function() {
         var $this = this;
+        var max = 0;
       	$('.pin').each(function(){
       		var min = Array.min($this.options.blocks);
       		var index = $.inArray(min, $this.options.blocks);
@@ -78,7 +106,12 @@
       			'top': (min + $this.options.offsetTop) + 'px'
       		});
       		$this.options.blocks[index] = min+$(this).outerHeight()+$this.options.margin;
+      		if (( $(this).outerHeight()+$this.options.margin + Array.max($this.options.blocks)) > max) {
+      		  max = $(this).outerHeight()+$this.options.margin + Array.max($this.options.blocks);
+      		}
       	});	
+        $($this.element).css({height: max});
+      	
       }
 
     };
@@ -97,5 +130,8 @@
 })( jQuery, window, document );
 
 Array.min = function(array) {
+    return Math.min.apply(Math, array);
+};
+Array.max = function(array) {
     return Math.min.apply(Math, array);
 };
