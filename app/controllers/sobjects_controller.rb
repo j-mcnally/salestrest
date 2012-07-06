@@ -10,11 +10,15 @@ class SobjectsController < AuthenticatedController
         resp = @token.get("/services/data/v23.0/sobjects/");
         resp = JSON::parse(resp.body)
         sobjects = resp["sobjects"].collect{|s| {name: s["name"], label: s["label"], prefix: s["keyPrefix"]} }
+        
         render :json => sobjects.to_json
       }
       format.html
     end
 
+  end
+  def pin
+  
   end
   def show
     @object = params[:id]
@@ -31,6 +35,7 @@ class SobjectsController < AuthenticatedController
           end
         end
         fields << "Id"
+        fields << "CreatedDate"
     
         #Bootstrap request with generic query
         query = CGI::escape("Select #{fields.join(', ')} FROM #{params[:id]}")
@@ -41,15 +46,18 @@ class SobjectsController < AuthenticatedController
         resp["records"].each do |record|
           fresp = []
           i = 0
+          
+          
+          
           record.each_pair do |key, val|
-            fresp << {:key => key.underscore.humanize.capitalize, :val => val} unless val.nil? || val == '' || key == 'attributes'
+            fresp << {:key => key.underscore.humanize.capitalize, :val => val} unless val.nil? || val == '' || key == 'attributes' || key == 'CreatedDate'
             i += 1
             break if i > 5
             
           end
           record["fields__api"] = fresp
         end
-        
+       
         render :json => {:data => resp}
       }
       format.html

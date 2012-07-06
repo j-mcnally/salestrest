@@ -1,7 +1,11 @@
 %script{:id => "pin", :type => "text/html"}
   {{#records}}
   %li{:id => "{{Id}}", :class => "noChatter pin"}
-    %ul
+    %ul.actions
+      %li.pinit
+        %a{:href => "/sobjects/pin/{{Id}}"}
+          Pin
+    %ul.post
       %li.info
         %div.type
           {{#attributes}}
@@ -41,6 +45,8 @@
         {{#actor}}{{name}}{{/actor}}
         %br
         {{#body}}{{text}}{{/body}}
+        %br
+        {{created_at}}
   {{/chatter}}
   {{^chatter}}
   %li.post.noposts

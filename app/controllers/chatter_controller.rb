@@ -5,6 +5,8 @@ class ChatterController < AuthenticatedController
     
     data = chatter_resp["items"].select{|itm| itm["type"] == "TextPost"}
     
+    data.map{|i| i["created_at"] = Time.parse(i["createdDate"]).strftime("%b, %d %l:%M %P") }
+    
     respond_to do |format|
       format.json {
         render :json => {:chatter => data}
