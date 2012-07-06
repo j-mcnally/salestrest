@@ -27,6 +27,11 @@
               + Load chatter feed
   {{/records}}
 %script{:id => "chatter", :type => "text/html"}
+  {{#me}}
+  %li.comment.post
+    %img{:style => "height: 30px;", :src => "{{#photo}}{{smallPhotoUrl}}{{/photo}}?oauth_token=#{session[:access_token]}", :title => "{{name}}", :alt => "{{name}}"}
+    %input{:type => "text", :class => "comment", :placeholder => "Enter a comment"}
+  {{/me}}
   {{#chatter}}
   %li.post
     .author
@@ -42,11 +47,7 @@
     .body
       No chatter posts
   {{/chatter}}
-  {{#me}}
-  %li.comment
-    %img{:style => "height: 30px;", :src => "{{#photo}}{{smallPhotoUrl}}{{/photo}}?oauth_token=#{session[:access_token]}", :title => "{{name}}", :alt => "{{name}}"}
-    %input{:type => "text", :class => "comment", :placeholder => "Enter a comment"}
-  {{/me}}
+  
 %script{:id => "chatterComment", :type => "text/html"}
   %li.post
     .author

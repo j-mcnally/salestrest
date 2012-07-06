@@ -58,9 +58,9 @@
                               data: {id: id, text: newComment},
                               success: function(e) {
                                 var cdata = {author: $this.options.me, body: newComment}
-                                jQuery("li.comment", jQuery(context)).before(ich.chatterComment(cdata));
+                                jQuery("li.comment", jQuery(context)).after(ich.chatterComment(cdata));
                                 jQuery(".noposts", jQuery(context)).hide();
-                                jQuery(box).val("");
+                                jQuery("box").val("");
                                 $this.setupBlocks($this)
                               }
                             });
