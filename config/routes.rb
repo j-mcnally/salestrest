@@ -7,7 +7,11 @@ Salestrest::Application.routes.draw do
     end
   end
   resources :pins
-  resources :sobjects
+  resources :sobjects do
+    collection do
+      get 'pin/:id' => "sobject#pin", :as => "pin"
+    end
+  end
   resources :chatter, :only => [:create, :show]
   resources :dashboard, :only => [:index]
   root :to => "sobjects#show", :id => "Account"
