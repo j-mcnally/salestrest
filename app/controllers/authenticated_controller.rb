@@ -2,7 +2,9 @@ require "cgi"
 
 class AuthenticatedController < ApplicationController
   before_filter :oauth_client
-  before_filter :grab_sobjects
+  before_filter :grab_sobjects, :if => Proc.new{|c| c.request.format.html?}
+  
+  before_filter :me, :if => Proc.new{|c| c.request.format.html?}
   
   rescue_from OAuth2::Error, :with => :rescue_oauth
     
@@ -23,6 +25,11 @@ class AuthenticatedController < ApplicationController
       
     end
   
+  end
+  def me
+    me = @token.get('/services/data/v23.0/chatter/users/me')
+    @me = JSON::parse(me.body)
+    puts @me.inspect
   end
   
   def grab_sobjects

@@ -1,6 +1,9 @@
 
 
 class SobjectsController < AuthenticatedController
+  
+  
+  
   def index
     respond_to do |format|
       format.json {

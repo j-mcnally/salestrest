@@ -11,4 +11,14 @@ class ChatterController < AuthenticatedController
       }
     end
   end
+  def create
+
+    new_comment = @token.post("/services/data/v25.0/chatter/feeds/record/#{params[:id]}/feed-items", :params => {:text => params["text"] })
+    new_comment = JSON::parse(new_comment.body)
+     respond_to do |format|
+      format.json {
+        render :json => {:comment => new_comment}
+      }
+    end
+  end
 end
