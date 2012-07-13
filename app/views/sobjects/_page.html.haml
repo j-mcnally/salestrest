@@ -3,6 +3,10 @@
   %div{"data-role" => "header", "data-position" => "fixed"}
     %h1
       Dashboard
+    %div{"data-role" => "fieldcontain", :class => "ui-btn-left", :style => "top: -17px;"}
+      %input{'type' => 'search', 'data-mini' => 'true', :id => "searchField", 'data-inline' => 'true', 'data-theme' => 'c'}
+      
+    
     %select{'data-mini' => 'true', :id => "objectSelector", :class => "ui-btn-right"}
       -@types.each do |type|
         %option{:value => "#{type["name"]}", "#{@object == type["name"] ? "selected" : "not_selected"}" => "selected"}

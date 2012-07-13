@@ -36,6 +36,46 @@
               jQuery(".pins li.pin").each(function() {
                   var id = jQuery(this).attr("id");
                   var context = this;
+                    jQuery(".pinit a", jQuery(context)).click(function(e) {
+                          
+                          var $pinBtn = jQuery(this);
+                          e.stopPropagation();
+                          e.preventDefault();
+                          
+                          var unpinId = $pinBtn.attr("data-unpinId");
+                          
+                          if (unpinId == "") {
+                            jQuery.ajax({
+                              type: 'POST',
+                              url: $pinBtn.attr("href"),
+                              success: function(a,b,c,d) {
+                             
+                                
+                                $pinBtn.text("Unpin");
+                                
+                              }
+                            });
+                          }
+                          else {
+                            if ($this.options.object == '___Pinned') {
+                                jQuery(context).remove();
+                                 $this.setupBlocks($this)
+                            }
+                            jQuery.ajax({
+                              type: 'DELETE',
+                              url: "/sobjects/pin/" + unpinId,
+                              success: function(a,b,c,d) {
+                                
+                                
+                                $pinBtn.text("Pin");
+                                
+                              },
+                              error: function(a,b,c,d) {
+                              }
+                            });
+                            
+                          }
+                    });
                     jQuery(".loadChatter", jQuery(context)).bind("click", function(e) {
                       jQuery(this).hide();
                       e.preventDefault();
@@ -44,6 +84,10 @@
                         data.me = $this.options.me;
                         jQuery(".chatter ul", jQuery(context)).html(ich.chatter(data));
                         jQuery(".chatterLoader", jQuery(context)).hide();
+                        
+                        
+                        
+                        
                         
                         jQuery("input.comment", jQuery(context)).keypress(function(e) {
                           if (e.charCode == 13) {
@@ -88,6 +132,7 @@
       	$this.options.colWidth = $('.pin').outerWidth();
       	$this.options.blocks = [];
       	$this.options.colCount = Math.floor($this.options.windowWidth/($this.options.colWidth+$this.options.margin*2));
+      	$this.options.leftOffset = ($(window).width() / 2) * $this.options.colCount;
       	for(var i=0;i<$this.options.colCount;i++){
       	  $this.options.blocks.push($this.options.margin);
       	}

@@ -5,13 +5,18 @@ Salestrest::Application.routes.draw do
         get 'callback'
       end
     end
+    get :destroy
   end
   resources :pins
   resources :sobjects do
     collection do
-      get 'pin/:id' => "sobject#pin", :as => "pin"
+      post 'pin/:id' => "sobjects#pin", :as => "pin"
+      delete 'pin/:id' => "sobjects#unpin", :as => "pin"
     end
   end
+  
+  
+  
   resources :chatter, :only => [:create, :show]
   resources :dashboard, :only => [:index]
   root :to => "sobjects#show", :id => "Account"
