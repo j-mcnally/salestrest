@@ -125,6 +125,9 @@ class SobjectsController < AuthenticatedController
         else
         
           resp = getData(params[:id])
+          
+          puts resp.inspect
+          
           render :json => {:data => resp}
         end
           
