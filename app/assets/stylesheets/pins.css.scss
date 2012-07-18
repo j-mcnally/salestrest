@@ -4,10 +4,9 @@
 .pins {
   margin: auto;
 }
-.pin {
+.pin:hover {
   ul.actions {
     display: block;
-   
   }
 }
 
@@ -27,13 +26,13 @@
       padding-left: 0px;
   }
   ul.actions {
+    display: none;
     margin: 10px 0 0 10px;
-    width: 90%;
-    position: absolute;
     
+    position: absolute;
     li {
-      opacity: .6;
-      float: right;
+      opacity: .8;
+      float: left;
       display: block;
       a {
         -webkit-border-radius: 6px;
