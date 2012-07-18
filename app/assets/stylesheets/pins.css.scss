@@ -28,10 +28,11 @@
   }
   ul.actions {
     margin: 10px 0 0 10px;
-    
+    width: 90%;
     position: absolute;
+    z-index: 9999;
     li {
-      opacity: .8;
+      opacity: .6;
       float: right;
       display: block;
       a {
