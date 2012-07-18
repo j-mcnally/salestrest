@@ -19,5 +19,5 @@ Salestrest::Application.routes.draw do
   
   resources :chatter, :only => [:create, :show]
   resources :dashboard, :only => [:index]
-  root :to => "sobjects#show", :id => "Account"
+  root :to => "sobjects#show", :id => "___Pinned"
 end
