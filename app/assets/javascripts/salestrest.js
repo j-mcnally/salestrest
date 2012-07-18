@@ -43,7 +43,7 @@
                           e.preventDefault();
                           
                           var unpinId = $pinBtn.attr("data-unpinId");
-                          
+                          alert(unpinId);
                           if (unpinId == "") {
                             jQuery.ajax({
                               type: 'POST',
