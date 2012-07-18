@@ -37,14 +37,15 @@
                   var id = jQuery(this).attr("id");
                   var context = this;
                     jQuery(".pinit a", jQuery(context)).live("click", function(e) {
-                          alert('hi');
+                      
                           var $pinBtn = jQuery(this);
                           e.stopPropagation();
                           e.preventDefault();
                           
                           var unpinId = $pinBtn.attr("data-unpinId");
-                          alert(unpinId);
+                          
                           if (unpinId == "") {
+                            alert($pinBtn.attr("href"));
                             jQuery.ajax({
                               type: 'POST',
                               url: $pinBtn.attr("href"),
