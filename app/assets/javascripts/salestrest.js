@@ -54,6 +54,9 @@
                                 $pinBtn.text("Unpin");
                                 
                               }
+                              error: function() {
+                                alert("Error");
+                              }
                             });
                           }
                           else {
