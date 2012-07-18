@@ -36,8 +36,8 @@
               jQuery(".pins li.pin").each(function() {
                   var id = jQuery(this).attr("id");
                   var context = this;
-                    jQuery(".pinit a", jQuery(context)).click(function(e) {
-                          
+                    jQuery(".pinit a", jQuery(context)).live("click", function(e) {
+                          alert('hi');
                           var $pinBtn = jQuery(this);
                           e.stopPropagation();
                           e.preventDefault();
