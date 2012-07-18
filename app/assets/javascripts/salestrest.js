@@ -45,7 +45,7 @@
                           var unpinId = $pinBtn.attr("data-unpinId");
                           
                           if (unpinId == "") {
-                            alert($pinBtn.attr("data-pinlink"));
+
                             jQuery.ajax({
                               type: 'POST',
                               url: $pinBtn.attr("data-pinlink"),
