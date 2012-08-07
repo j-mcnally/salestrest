@@ -4,8 +4,8 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
 development:
-  consumer_key: 
-  consumer_secret: 
+  consumer_key: 3MVG9y6x0357HleefWRTFJQG9o__OKrK9XAoDYrYIdHatPqtosfERsLj0NEhkDMLqTSr.VXq484welh5pvLvi
+  consumer_secret: 6065522086900772133
   
 test:
   consumer_key: 
